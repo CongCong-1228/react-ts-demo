@@ -1,26 +1,29 @@
-{
+{ // babel-loader 编译ts的配置
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
+    "noImplicitAny": false,  // 当使用TS未指定类型时，默认指定为any不会报错，用于和JS混合使用
+    "target": "es5",         // 将TS编译为主流浏览器支持的ES5格式，编译后的版本
+    "lib": [                 //  编译期间需要被包括进来的库文件
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "allowJs": true,               // 允许混合编译JS文件
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true,      // 允许使用ES6的import默认文件
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "esnext",               // 代码的模块系统，比较常见的有node.js的CommonJS系统，ES6的esnext系统，requireJS的AMD系统
+    "moduleResolution": "node",      // 编译器的工作方式，各个文件之间调用，import的工作流程
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "isolatedModules": true,       // 开启这个选项后，编译器会将每个文件作为单独的模块来使用
+    "noEmit": true,         // 发生错误时，编译器不会生成JS代码
+    "jsx": "react-jsx"     // 允许编译器支持编译React代码
   },
-  "include": [
+  "include": [           // include列出我们需要编译的文件，需要为文件的相对路径或绝对路径
     "src"
-  ]
+  ],
+  "exclude": [],        // 编译中排除的文件，通常有node_modules，测试文件等。
+  "files": [],           // 编译器应始终包含在编译中的文件，无论是否使用exclude，都会编译此选项中的文件，优先级高于exclude
 }
