@@ -1,7 +1,7 @@
 {
   // babel-loader 编译ts的配置
   "compilerOptions": {
-    "noImplicitAny": false,
+//    "noImplicitAny": false,
     // 当使用TS未指定类型时，默认指定为any不会报错，用于和JS混合使用
     "target": "es5",
     // 将TS编译为主流浏览器支持的ES5格式，编译后的版本

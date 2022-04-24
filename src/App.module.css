@@ -2,6 +2,11 @@
     text-align: center;
 }
 
+.title {
+    font-family: 'Slidefu', serif;
+    font-size: 62px;
+}
+
 .appHeader {
     display: flex;
     flex-direction: row;
