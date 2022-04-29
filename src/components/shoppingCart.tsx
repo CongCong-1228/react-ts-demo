@@ -1,39 +1,34 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import styles from './shoppingCart.module.css'
+import {appContext} from "../AppState";
 
 interface Props {
 }
 
-interface State {
-    isOpen: boolean
-}
 
-class ShoppingCart extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            isOpen: false,
-        }
-    }
-
-    render() {
-        return (
-            <>
-                <div className={styles.cartContainer}>
-                    <button className={styles.button} onClick={() => {
-                        this.setState({isOpen: !this.state.isOpen})
-                    }}>购物车
-                    </button>
-                    <div className={styles.cartDropDown}>
-                        <ul style={{display: this.state.isOpen ? 'block' : 'none'}}>
-                            <li>robot 1</li>
-                            <li>robot 2</li>
-                        </ul>
-                    </div>
+const ShoppingCart: React.FC<Props> = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const state = useContext(appContext)
+    return (
+        <>
+            <div className={styles.cartContainer}>
+                <button className={styles.button} onClick={() => {
+                    setIsOpen(!isOpen)
+                }}>购物车
+                </button>
+                <div className={styles.cartDropDown}>
+                    <span>{state.shoppingCart.items.length}</span>
+                    <ul style={{display: isOpen ? 'block' : 'none'}}>
+                        {state.shoppingCart.items.map(item => {
+                            return <li>{item.name}</li>
+                        })}
+                    </ul>
                 </div>
-            </>
-        )
-    }
-}
+            </div>
+        </>
+    )
 
+}
 export default ShoppingCart
+
+
